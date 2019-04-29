@@ -3,6 +3,9 @@ from django.shortcuts import render
 from rest_framework import viewsets 
 from rest_framework.response import Response
 
+from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.authtoken.views import ObtainAuthToken
+
 
 
 class MessageViewSet(viewsets.ViewSet): #A simple viewset to tell the aim of this api/project
@@ -16,3 +19,12 @@ class MessageViewSet(viewsets.ViewSet): #A simple viewset to tell the aim of thi
 		]
 
 		return Response({'Message': 'Welcome!', 'Objective': objective})
+
+
+class LoginViewSet(viewsets.ViewSet): #Checks email and password and returns an auth token.
+
+	serializer_class = AuthTokenSerializer
+
+	def create(self, request): #using ObtainAuthToken APIView to validate and create a token.
+
+		return ObtainAuthToken().post(request)
