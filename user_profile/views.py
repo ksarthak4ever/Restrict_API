@@ -32,7 +32,6 @@ class UserProfileViewSet(viewsets.ModelViewSet): #Handles creating,reading and u
 	serializer_class = serializers.UserProfileSerializer
 	queryset = models.UserProfile.objects.all() #queryset tells the viewset how to retrieve the objects from database i,e from which model.
 	authentication_classes = (TokenAuthentication,)
-#	permission_classes = (permissions.IsLoggedInUserOrAdmin, permissions.IsAdminUser) #added , to create them as tupples as we can use multiple authentication classes or permission classes for e.g. we can also use SessionAuthentication
 
 	def get_permissions(self):
 		permission_classes = []
